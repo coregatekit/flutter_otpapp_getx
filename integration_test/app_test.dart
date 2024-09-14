@@ -16,6 +16,7 @@ void main() {
 
     // Tap on send otp button
     await tester.tap(find.byKey(const Key('request_otp_button')));
+    await tester.pumpAndSettle();
 
     // Should see otp screen
     expect(find.byType(OtpScreen), findsOneWidget);
