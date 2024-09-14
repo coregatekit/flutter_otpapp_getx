@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:otp_app_getx/otp_screen.dart';
+import 'package:otp_app_getx/phone_number_screen_controller.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
-  const PhoneNumberScreen({super.key});
+  final PhoneNumberScreenController controller;
+
+  const PhoneNumberScreen({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class PhoneNumberScreen extends StatelessWidget {
               key: const Key('request_otp_button'),
               child: const Text('Send OTP'),
               onPressed: () {
-                Get.to(const OtpScreen());
+                controller.goToOtpScreen();
               },
             ),
             const Text('Invalid phone number'),

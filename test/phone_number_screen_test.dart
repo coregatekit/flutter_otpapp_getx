@@ -1,14 +1,33 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:otp_app_getx/phone_number_screen.dart';
+import 'package:otp_app_getx/phone_number_screen_controller.dart';
+
+class MockPhoneNumberScreenController extends Mock
+    implements PhoneNumberScreenController {}
 
 void main() {
-  testWidgets('', (WidgetTester tester) async {
-    await tester.pumpWidget(const PhoneNumberScreen());
+  Widget createPhoneNumberScreen(MockPhoneNumberScreenController controller) {
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      home: PhoneNumberScreen(
+        controller: controller,
+      ),
+    );
+  }
 
-    tester.enterText(find.byKey(const Key('phone_number_input')), '0642225828');
+  testWidgets('Verify success', (WidgetTester tester) async {
+    final mockController = MockPhoneNumberScreenController();
 
-    tester.tap(find.byKey(const Key('request_otp_button')));
-    await tester.pumpAndSettle();
+    await tester.pumpWidget(createPhoneNumberScreen(mockController));
+
+    await tester.enterText(
+        find.byKey(const Key('phone_number_input')), '0642225828');
+
+    await tester.tap(find.byKey(const Key('request_otp_button')));
+
+    verify(() => mockController.goToOtpScreen()).called(1);
   });
 }
