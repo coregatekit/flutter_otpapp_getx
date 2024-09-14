@@ -21,6 +21,7 @@ class PhoneNumberScreen extends StatelessWidget {
                 Get.to(const OtpScreen());
               },
             ),
+            const Text('Invalid phone number'),
           ],
         ),
       ),

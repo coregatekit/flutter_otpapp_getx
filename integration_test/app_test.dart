@@ -27,4 +27,21 @@ void main() {
 
     // Should see success screen
   });
+
+  testWidgets('Invalid phone number', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    // Should see phone number input
+    expect(find.byKey(const Key('phone_number_input')), findsOneWidget);
+
+    // Fill valid phone number input
+    await tester.enterText(find.byKey(const Key('phone_number_input')), '0');
+
+    // Tap on send otp button
+    await tester.tap(find.byKey(const Key('request_otp_button')));
+    await tester.pumpAndSettle();
+
+    // Should see error message
+    expect(find.text('Invalid phone number'), findsWidgets);
+  });
 }
