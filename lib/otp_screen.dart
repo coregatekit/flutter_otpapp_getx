@@ -19,6 +19,11 @@ class OtpScreen extends StatelessWidget {
                 hintText: 'Enter OTP',
               ),
             ),
+            ElevatedButton(
+              key: const Key('submit_otp_button'),
+              onPressed: () {},
+              child: const Text('Submit'),
+            ),
           ],
         ),
       ),

@@ -23,11 +23,11 @@ void main() {
     expect(find.byType(OtpScreen), findsOneWidget);
 
     // Fill valid otp code
-    // await tester.enterText(find.byKey(const Key('otp_input')), '123456');
+    await tester.enterText(find.byKey(const Key('otp_input')), '123456');
 
     // Tap on submit button
-    // await tester.tap(find.byKey(const Key('submit_button')));
-    // await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('submit_otp_button')));
+    await tester.pumpAndSettle();
 
     // Should see success screen
     // expect(find.byType(ResultScreen), findsOneWidget);
