@@ -1,12 +1,27 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:otp_app_getx/main.dart';
 import 'package:otp_app_getx/otp_screen.dart';
 import 'package:otp_app_getx/result_screen.dart';
+import 'package:http/http.dart';
+
+class MockHttpClient extends Mock implements Client {}
 
 void main() {
   testWidgets('Verify Success', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+    final mockHttpClient = MockHttpClient();
+    when(
+      () => mockHttpClient.post(Uri.parse('http://localhost:8888/otp/validate'),
+          body: any(named: 'body')),
+    ).thenAnswer(
+      (_) async =>
+          Future.delayed(const Duration(seconds: 1), () => Response('{}', 200)),
+    );
+
+    await tester.pumpWidget(MyApp(
+      httpClient: mockHttpClient,
+    ));
 
     // Should see phone number input
     expect(find.byKey(const Key('phone_number_input')), findsOneWidget);
@@ -30,11 +45,15 @@ void main() {
     await tester.pumpAndSettle();
 
     // Should see success screen
-    // expect(find.byType(ResultScreen), findsOneWidget);
+    expect(find.byType(ResultScreen), findsOneWidget);
   });
 
   testWidgets('Invalid phone number', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+    final mockHttpClient = MockHttpClient();
+
+    await tester.pumpWidget(MyApp(
+      httpClient: mockHttpClient,
+    ));
 
     // Should see phone number input
     expect(find.byKey(const Key('phone_number_input')), findsOneWidget);

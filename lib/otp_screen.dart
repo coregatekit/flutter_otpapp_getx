@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:otp_app_getx/otp_screen_controller.dart';
 
 class OtpScreen extends StatelessWidget {
+  final OtpScreenController controller;
   final TextEditingController otpController = TextEditingController();
 
-  OtpScreen({super.key});
+  OtpScreen({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,9 @@ class OtpScreen extends StatelessWidget {
             ),
             ElevatedButton(
               key: const Key('submit_otp_button'),
-              onPressed: () {},
+              onPressed: () {
+                controller.submit(otpController.text);
+              },
               child: const Text('Submit'),
             ),
           ],
