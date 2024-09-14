@@ -5,7 +5,7 @@ import 'package:otp_app_getx/otp_screen.dart';
 
 void main() {
   testWidgets('Verify Success', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
 
     // Should see phone number input
     expect(find.byKey(const Key('phone_number_input')), findsOneWidget);
@@ -29,7 +29,7 @@ void main() {
   });
 
   testWidgets('Invalid phone number', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
 
     // Should see phone number input
     expect(find.byKey(const Key('phone_number_input')), findsOneWidget);

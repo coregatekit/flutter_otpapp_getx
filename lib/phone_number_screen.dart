@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:otp_app_getx/phone_number_screen_controller.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
   final PhoneNumberScreenController controller;
+  final TextEditingController phoneNumberController = TextEditingController();
 
-  const PhoneNumberScreen({
+  PhoneNumberScreen({
     super.key,
     required this.controller,
   });
@@ -15,19 +17,22 @@ class PhoneNumberScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const TextField(
-              key: Key('phone_number_input'),
+            TextField(
+              key: const Key('phone_number_input'),
+              controller: phoneNumberController,
             ),
             TextButton(
               key: const Key('request_otp_button'),
               child: const Text('Send OTP'),
               onPressed: () {
-                controller.submit();
+                controller.submit(phoneNumberController.text);
               },
             ),
-            controller.isError.value
-                ? const Text('Invalid phone number')
-                : const SizedBox.shrink(),
+            Obx(() {
+              return controller.isError.value
+                  ? const Text('Invalid phone number')
+                  : const SizedBox.shrink();
+            }),
           ],
         ),
       ),

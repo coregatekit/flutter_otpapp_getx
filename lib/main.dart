@@ -4,13 +4,11 @@ import 'package:otp_app_getx/phone_number_screen.dart';
 import 'package:otp_app_getx/phone_number_screen_controller.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final PhoneNumberScreenController phoneNumberScreenController =
-      PhoneNumberScreenController();
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: PhoneNumberScreen(
-        controller: phoneNumberScreenController,
+        controller: PhoneNumberScreenController(routeAdapter: RouteAdapter()),
       ),
     );
   }

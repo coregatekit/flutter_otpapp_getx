@@ -28,7 +28,7 @@ void main() {
 
     await tester.tap(find.byKey(const Key('request_otp_button')));
 
-    verify(() => mockController.submit()).called(1);
+    verify(() => mockController.submit('1234')).called(1);
     expect(find.text('Invlid phone number'), findsNothing);
   });
 
