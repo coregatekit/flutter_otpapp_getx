@@ -21,6 +21,9 @@ samples, guidance on mobile development, and a full API reference.
 # Start Application
 flutter run
 
+# For run test
+flutter test
+
 # For run integration test
 flutter test integration_test/
 ```
