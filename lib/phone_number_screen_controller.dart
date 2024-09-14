@@ -4,7 +4,7 @@ import 'package:otp_app_getx/otp_screen.dart';
 class PhoneNumberScreenController extends GetxController {
   RxBool isError = false.obs;
 
-  void goToOtpScreen() {
+  void submit() {
     Get.to(const OtpScreen());
   }
 }

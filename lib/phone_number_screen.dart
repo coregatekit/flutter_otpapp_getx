@@ -22,7 +22,7 @@ class PhoneNumberScreen extends StatelessWidget {
               key: const Key('request_otp_button'),
               child: const Text('Send OTP'),
               onPressed: () {
-                controller.goToOtpScreen();
+                controller.submit();
               },
             ),
             controller.isError.value
