@@ -1,17 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otp_app_getx/main.dart';
 
 void main() {
-  testWidgets('Main Application', (WidgetTester tester) async {
+  testWidgets('Verify Success', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    expect(find.text('0'), findsOneWidget);
+    // Should see phone number input
+    expect(find.byKey(const Key('phone_number_input')), findsOneWidget);
 
-    await tester.tap(find.byType(FloatingActionButton));
-    await tester.pump();
+    // Fill valid phone number input
 
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap on send otp button
+
+    // Should see otp screen
+
+    // Fill valid otp code
+
+    // Tap on submit button
+
+    // Should see success screen
   });
 }
