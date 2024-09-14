@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:otp_app_getx/main.dart';
 import 'package:otp_app_getx/otp_screen.dart';
+import 'package:otp_app_getx/result_screen.dart';
 
 void main() {
   testWidgets('Verify Success', (WidgetTester tester) async {
@@ -22,10 +23,14 @@ void main() {
     expect(find.byType(OtpScreen), findsOneWidget);
 
     // Fill valid otp code
+    // await tester.enterText(find.byKey(const Key('otp_input')), '123456');
 
     // Tap on submit button
+    // await tester.tap(find.byKey(const Key('submit_button')));
+    // await tester.pumpAndSettle();
 
     // Should see success screen
+    // expect(find.byType(ResultScreen), findsOneWidget);
   });
 
   testWidgets('Invalid phone number', (WidgetTester tester) async {

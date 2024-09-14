@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:otp_app_getx/otp_screen.dart';
+import 'package:otp_app_getx/route_adapter.dart';
 
 class PhoneNumberScreenController extends GetxController {
   RxBool isError = false.obs;
@@ -14,11 +14,5 @@ class PhoneNumberScreenController extends GetxController {
       return;
     }
     isError.value = true;
-  }
-}
-
-class RouteAdapter {
-  toOtpScreen() {
-    Get.to(const OtpScreen());
   }
 }

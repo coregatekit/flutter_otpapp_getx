@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  final TextEditingController otpController = TextEditingController();
+
+  OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [],
+          children: [
+            const Text('X'),
+            TextFormField(
+              controller: otpController,
+              key: const Key('otp_input'),
+              decoration: const InputDecoration(
+                hintText: 'Enter OTP',
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:otp_app_getx/phone_number_screen_controller.dart';
+import 'package:otp_app_getx/route_adapter.dart';
 
 class MockRouteAdapter extends Mock implements RouteAdapter {}
 
