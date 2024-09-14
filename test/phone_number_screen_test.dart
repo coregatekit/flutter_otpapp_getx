@@ -20,14 +20,28 @@ void main() {
 
   testWidgets('Verify success', (WidgetTester tester) async {
     final mockController = MockPhoneNumberScreenController();
+    when(() => mockController.isError).thenReturn(false.obs);
 
     await tester.pumpWidget(createPhoneNumberScreen(mockController));
 
-    await tester.enterText(
-        find.byKey(const Key('phone_number_input')), '0642225828');
+    await tester.enterText(find.byKey(const Key('phone_number_input')), '1234');
 
     await tester.tap(find.byKey(const Key('request_otp_button')));
 
     verify(() => mockController.goToOtpScreen()).called(1);
+    expect(find.text('Invlid phone number'), findsNothing);
+  });
+
+  testWidgets('Show error text', (WidgetTester tester) async {
+    final mockController = MockPhoneNumberScreenController();
+    when(() => mockController.isError).thenReturn(true.obs);
+
+    await tester.pumpWidget(createPhoneNumberScreen(mockController));
+
+    await tester.enterText(find.byKey(const Key('phone_number_input')), '1234');
+
+    await tester.tap(find.byKey(const Key('request_otp_button')));
+
+    expect(find.text('Invalid phone number'), findsOneWidget);
   });
 }

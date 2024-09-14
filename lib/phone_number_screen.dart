@@ -25,7 +25,9 @@ class PhoneNumberScreen extends StatelessWidget {
                 controller.goToOtpScreen();
               },
             ),
-            const Text('Invalid phone number'),
+            controller.isError.value
+                ? const Text('Invalid phone number')
+                : const SizedBox.shrink(),
           ],
         ),
       ),
